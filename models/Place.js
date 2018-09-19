@@ -1,0 +1,27 @@
+const mongoose = require('mongoose')
+const Schema   = mongoose.Schema
+
+const placeSchema = new Schema({
+  name: String,
+  type:{
+    type:String,
+    enum:['Coffee', 'Bookstore'],
+    default:'Coffee'
+  },
+  location:{
+    type:{
+      type:String,
+      default:'Point'
+    },
+    address:String,
+      coordinates:[{
+        type:Number
+      }]
+  }
+},{
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
+})
+module.exports = mongoose.model('Place', placeSchema)
